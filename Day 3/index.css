@@ -1,0 +1,16 @@
+@media (max-width: 800px) {
+    h1 {
+        width: 100%;
+    }
+    #callToAction {
+        width: 100%;
+    }
+}
+#hero{
+    width: 100%;
+    height: 30vh;
+}
+#whyUs{
+    width: 40%;
+
+}
