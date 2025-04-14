@@ -1,65 +1,102 @@
 @media (max-width: 800px) {
-    h1 {
-        width: 100%;
-    }
-    #callToAction {
-        width: 100%;
-    }
+  h1 {
+    width: 100%;
+  }
+  #callToAction {
+    width: 100%;
+  }
 }
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 h1 {
-    font-size: 40px;
-    margin: 20px;
+  font-size: 40px;
+  margin: 20px;
 }
-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100vh;
-    width: 100vw;
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  width: 100vw;
 }
-nav ul{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 10vh;
+/* Nav Styles */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+  padding: 0 5rem;
+  color: black;
+  background-color: #f8fef7;
+  border-bottom: solid 1px #000;
 }
-#hero{
-    width: 100%;
-    height: 30vh;
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 20%;
+  list-style-type: none;
 }
-#whyUs{
-    width: 40%;
-
+.nav_item {
+  color: black;
+  text-decoration: none;
+  font-family: "Nunito Sans", sans-serif;
 }
-main{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100vw;
-    height: 90vh;
+/* Nav Styles */
+#hero {
+  width: 100%;
+  height: 30vh;
 }
-#main_content{
-    width: 70%;
-    height: 100%; 
-    background-color: lightsalmon;
-    
+#whyUs {
+  width: 80%;
 }
-aside{
-    width: 30%;
-    background-color: blueviolet;
+#whyUs h2 {
+  font-size: 70px;
+  margin: 20px 0;
 }
-.extra_content_mobile{
-    display: none;
+#whyUs p {
+  font-size: 20px;
+  margin: 20px 0;
+}
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100vw;
+  height: 90vh;
+  background: linear-gradient(to bottom right, lightgreen, rgb(14, 189, 14));
+  padding: 0 5rem;
+}
+#main_content {
+  width: 60%;
+  height: 100%;
+}
+#start_play_button {
+  background-color: #7150e9;
+  width: 10rem;
+  height: 3rem;
+  border: none;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 20px;
+  border-radius:  25px;
+}
+aside {
+  width: 40%;
+  background-color: #f8fef7;
+  border-radius: 20% ;
+  padding-left: 10%;
+}
+.extra_content_mobile {
+  display: none;
 }
 #copyright {
-    font-family: 'Lobster', cursive;
-    font-size: 10px;
-    text-align:start;
-    margin: 10px 0;
+  font-family: "Lobster", cursive;
+  font-size: 10px;
+  text-align: start;
+  margin: 10px 0;
 }

@@ -11,3 +11,20 @@
     background-color: lightgray;
   }
 }
+.start_play{
+  background-color: #7150e9;
+  width: 9rem;
+  height: 2.5rem; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius:  20px;
+  color: white;
+}
+.start_play a{
+  color: white;
+}
+p{
+  font-size: 20px;
+  margin: 20px 0;
+}
