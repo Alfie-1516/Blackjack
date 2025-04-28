@@ -1,25 +1,32 @@
+# Blackjack Betting Interface
 
-### 1. Add Google Fonts
-- Link a **Google Font** in the `<head>` of your HTML file.
+This feature adds a betting interface to a blackjack game, allowing players to wager part of their bankroll.
 
-### 2. Use Different Fonts for Headings and Body
-- Apply:
-  - **One font for headings** (e.g., `<h1>`, `<h2>`, etc.).
-  - **A different font for other elements**, including paragraphs (`<p>`).
+## 1. Add a Bankroll to the Data Model
+- Represent the **bankroll** as the money the player is willing to risk (not their total assets).
 
-### 3. Adjust Font Sizes and Margins
-- Ensure a clean and readable design by tweaking typography.
+## 2. Define Bankroll Accessor Functions
+- **`getBankroll()`**  
+  - Global function that returns the current value of the bankroll variable.
+- **`setBankroll(newBalance)`**  
+  - Global function that sets the bankroll to `newBalance` (must be an integer).
 
-### 4. Set Specific Styling Rules
-- **`h1` Styling:**
-  - Font size: **40px**
-  - Margin: **20px**
-- **`#copyright` Styling:**
-  - Font size: **10px**
+## 3. Initialize the Bankroll
+- Set the player's initial bankroll to **2022**.
+- Use only **whole dollars** (integers).
 
-### 5. Final Touches
-- Apply spacing, margins, and any necessary adjustments.
-- Ensure a visually appealing and professional look.
+## 4. Build the Betting Interface in HTML
+- Add a `#betting` section (initially hidden with `display: none`):
+  - A `<span>` that displays the bankroll (e.g., `$2022`).
+  - A **Material textfield** with the ID `#users-wager` for entering a wager.
+  - A **Material button** with:
+    - Text: **"Bet"**
+    - `onclick`: Calls a function `makeWager()`
 
----
+- **`makeWager()`** should:
+  - `console.log()` the value entered in `#users-wager`
+  - Call `timeToPlay()`
 
+## 5. Define the `timeToBet()` Function
+- Globally scoped function that:
+  - **Hides** the `#playersActions` section (via
