@@ -37,13 +37,24 @@
         <section>
             <h2>Bank Roll</h2>
             <p id="bet_roll">Unspecified</p>
+        </section>
+        <button onclick="timeToBet()">Trigger Bet Modal</button>
+
     </main>
 
-    <div class="w-2/5 h-80 bg-amber-400 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+    <!-- <div class="w-2/5 h-80 bg-amber-400 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
         <h1>Bank Roll</h1>
         <p>How much will you like to bet </p>
         <input type="number" id="bet_amount" placeholder="Enter amount" class="border-2 border-gray-300 rounded-md p-2">
         <button id="bet_button" class="bg-blue-500 text-white rounded-md p-2 mt-2">Set Bet Roll</button>
+    </div> -->
+    <div class="w-2/5 h-80 bg-amber-400 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50" id="bet_modal" style="display: block;">
+        <h1>Place Bet</h1>
+        <p>How much will you like to bet </p>
+        <input type="number" id="raise_amount" placeholder="Enter amount" class="border-2 border-gray-300 rounded-md p-2">
+        <button class="bg-blue-500 text-white rounded-md p-2 mt-2" onclick="make_wager('Raise')">Raise</button>
+        <button  class="bg-blue-500 text-white rounded-md p-2 mt-2" onclick="make_wager('Call')">Call</button>
+        <button class="bg-blue-500 text-white rounded-md p-2 mt-2" onclick="make_wager('Check')">Check</button>
     </div>
     <footer></footer>
 </body>
