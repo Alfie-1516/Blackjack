@@ -29,4 +29,4 @@ This feature adds a betting interface to a blackjack game, allowing players to w
 
 ## 5. Define the `timeToBet()` Function
 - Globally scoped function that:
-  - **Hides** the `#playersActions` section (via
+  - **Hides** the `#playersActions` section 
