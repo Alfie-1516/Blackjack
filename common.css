@@ -58,3 +58,19 @@ nav ul {
   text-decoration: none;
   font-family: "Nunito Sans", sans-serif;
 }
+.rules_container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+.rules_item_title{
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: left;
+}
