@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="common.css">
 </head>
 
-<body>
+<body class="bg-[#f5f5f5]">
     <nav>
         <h1>Poker</h1>
 
@@ -18,53 +18,65 @@
             <li><a href="rules.html" class="nav_item">Rules</a></li>
             <li class="start_play"><a href="table.html" class="nav_item">Start Playing</a></li>
         </ul>
+        <h1>Poker</h1>
     </nav>
-    <article class="w-full h-screen  overflow-y-scroll snap-mandatory items-center justify-center" style="scroll-snap-type: y mandatory; height: 90vh;">
+    <article class="w-full h-screen  overflow-y-scroll snap-mandatory items-center justify-center"
+        style="scroll-snap-type: y mandatory; height: 90vh;">
         <div class="rules_container flex flex-row">
-            <div class="basis-1/2">
-                <h2 class="rules_item_title">Objective of the Game</h2>
-                <p>The goal of poker is to win chips or money by either having the best hand at showdown or convincing your
-                    opponents to fold their hands.</p>
+            <div class="basis-1/2 h-6/12 flex flex-col justify-start ">
+                <h2 class="rules_item_title "> <span class="text-[#8db48e]">Objective</span> of the Game</h2>
+                <p>The goal of poker is to win chips or money <br>
+                    Either have the best hand or make opponents fold.</p>
+                <p class="font-light">
+                    The primary objective of poker is to accumulate chips or money by outplaying your opponents through
+                    strategy and skill. This can be achieved in two main ways: either by holding the strongest hand at
+                    showdown—when all remaining players reveal their cards—or by successfully bluffing or betting in a
+                    way that persuades your opponents to fold before the showdown. In essence, poker combines elements
+                    of probability, psychology, and risk management to outsmart other players and win the pot
+                </p>
             </div>
-            <div class="bg-amber-400 basis-1/2">
-                <p>image</p>
+            <div class=" basis-1/2 flex justify-center ">
+                <img src="Images\PokerCard.png" alt="">
 
             </div>
-            
+
         </div>
 
         <div class="rules_container flex flex-row">
-            <div class="basis-1/2">
-                <h2 class="rules_item_title">Basic Poker Hand Rankings (Best to Worst)</h2>
-                <ul>
-                    <li><strong>Royal Flush</strong> (A, K, Q, J, 10 all same suit)</li>
-                    <li><strong>Straight Flush</strong> (Five cards in sequence, same suit)</li>
-                    <li><strong>Four of a Kind</strong> (Four cards of the same rank)</li>
-                    <li><strong>Full House</strong> (Three of a kind plus a pair)</li>
-                    <li><strong>Flush</strong> (Five cards same suit, any order)</li>
-                    <li><strong>Straight</strong> (Five cards in sequence, different suits)</li>
-                    <li><strong>Three of a Kind</strong> (Three cards of the same rank)</li>
-                    <li><strong>Two Pair</strong> (Two separate pairs)</li>
-                    <li><strong>One Pair</strong> (Two cards of the same rank)</li>
-                    <li><strong>High Card</strong> (If no combination, highest card wins)</li>
+            <div class="basis-1/2  h-6/12 flex flex-col justify-start">
+                <h2 class="rules_item_title">Basic Poker <span class="text-[#8db48e]">Hand Rankings</span> (Best to
+                    Worst)</h2>
+                <ul class="hand_rankings font-light">
+                    <li><strong class="font-semibold">Royal Flush</strong> A, K, Q, J, 10 all same suit</li>
+                    <li><strong class="font-semibold">Straight Flush: </strong> Five cards in sequence & same suit</li>
+                    <li><strong class="font-semibold">Four of a Kind: </strong> Four cards of the same rank</li>
+                    <li><strong class="font-semibold">Full House: </strong> Three of a kind plus a pair </li>
+                    <li><strong class="font-semibold">Flush: </strong> Five cards same suit, any order</li>
+                    <li><strong class="font-semibold">Straight: </strong> Five cards in sequence, different suits</li>
+                    <li><strong class="font-semibold">Three of a Kind: </strong> Three cards of the same rank</li>
+                    <li><strong class="font-semibold">Two Pair: </strong> Two separate pairs</li>
+                    <li><strong class="font-semibold">One Pair: </strong> Two cards of the same rank</li>
+                    <li><strong class="font-semibold">High Card: </strong> If no combination, highest card wins</li>
                 </ul>
             </div>
-            <div class="bg-amber-400 basis-1/2">
-                <p>image</p>
+            <div class="basis-1/2 flex justify-center">
+                <img src="Images\hands.jpg" alt="">
 
             </div>
         </div>
 
         <div class="rules_container flex flex-row">
-            <div class="basis-1/2">
-                <h2 class="rules_item_title">Gameplay Overview</h2>
-                <ol>
+            <div class="basis-1/2 h-6/12 flex flex-col justify-start">
+                <h2 class="rules_item_title text-[#8db48e]">Gameplay Overview</h2>
+                <p>Poker is played in rounds where players are dealt cards, place bets, and try to win the pot by having
+                    the best hand or making others fold. </p>
+                <ol class="hand_rankings font-light">
                     <li>Players are dealt two private cards (known as "hole cards").</li>
                     <li>Five community cards are dealt face-up in three stages:
                         <ul>
-                            <li><strong>Flop</strong> – 3 cards</li>
-                            <li><strong>Turn</strong> – 1 card</li>
-                            <li><strong>River</strong> – 1 card</li>
+                            <li><strong class="font-semibold">Flop</strong> – 3 cards</li>
+                            <li><strong class="font-semibold">Turn</strong> – 1 card</li>
+                            <li><strong class="font-semibold">River</strong> – 1 card</li>
                         </ul>
                     </li>
                     <li>Players use a combination of their hole cards and the community cards to make the best five-card
@@ -72,54 +84,68 @@
                     <li>Betting rounds occur after each deal of cards.</li>
                 </ol>
             </div>
-            
-            <div class="bg-amber-400 basis-1/2">
-                <p>image</p>
+
+            <div class=" basis-1/2 flex justify-center ">
+                <img src="Images\PokerCard.png" alt="">
 
             </div>
+
         </div>
 
         <div class="rules_container flex flex-row">
-            <div class="basis-1/2">
-                <h2 class="rules_item_title">Common Poker Terms</h2>
-                <ul>
-                    <li><strong>Check</strong> – Decline to bet but keep your cards.</li>
-                    <li><strong>Bet</strong> – Wager chips or money into the pot.</li>
-                    <li><strong>Call</strong> – Match another player’s bet.</li>
-                    <li><strong>Raise</strong> – Increase the previous bet.</li>
-                    <li><strong>Fold</strong> – Forfeit the hand and any chance at winning the pot.</li>
-                    <li><strong>Blinds</strong> – Forced bets to start the action (small blind, big blind).</li>
-                    <li><strong>All-In</strong> – Bet all the chips you have.</li>
+            <div class="basis-1/2  h-6/12 flex flex-col justify-start">
+                <h2 class="rules_item_title">Common <span class="text-[#8db48e]">Poker Terms</span></h2>
+                <p>Understanding poker terminology is crucial for effective communication and strategy in the game. <br>
+                    Here are some common terms you should know:</p>
+                <ul class="hand_rankings font-light">
+                    <li><strong class="font-semibold">Check</strong> – Decline to bet but keep your cards.</li>
+                    <li><strong class="font-semibold">Bet</strong> – Wager chips or money into the pot.</li>
+                    <li><strong class="font-semibold">Call</strong> – Match another player’s bet.</li>
+                    <li><strong class="font-semibold">Raise</strong> – Increase the previous bet.</li>
+                    <li><strong class="font-semibold">Fold</strong> – Forfeit the hand and any chance at winning the
+                        pot.</li>
+                    <li><strong class="font-semibold">Blinds</strong> – Forced bets to start the action (small blind,
+                        big blind).</li>
+                    <li><strong class="font-semibold">All-In</strong> – Bet all the chips you have.</li>
                 </ul>
             </div>
-            
-            <div class="bg-amber-400 basis-1/2">
-                <p>image</p>
+
+            <div class="basis-1/2 flex justify-center">
+                <img src="Images\hands.jpg" alt="">
 
             </div>
-            
+
         </div>
 
         <div class="rules_container flex flex-row">
-            <div class="basis-1/2">
-                <h2 class="rules_item_title">Basic Poker Etiquette</h2>
-                <ul>
+            <div class="basis-1/2  h-6/12 flex flex-col justify-start ">
+                <h2 class="rules_item_title">Basic <span class="text-[#8db48e]"> Poker Etiquette</span></h2>
+                <p>Good poker etiquette ensures a smooth and enjoyable game for everyone. <br> Here are some key points
+                    to
+                    remember:</p>
+                <ul class="hand_rankings font-light">
                     <li>Always act in turn.</li>
                     <li>Do not reveal your cards while the hand is ongoing.</li>
                     <li>Be respectful to all players.</li>
                     <li>Handle your chips neatly and clearly.</li>
                     <li>Announce your moves when necessary (especially "raise" or "all-in").</li>
+                    
                 </ul>
+                
+                <div class="start_play mt-4">
+                    <a href="table.html" class="nav_item" role="button">Start Playing</a>
+                  </div>
+                  
             </div>
-          
-            <div class="bg-amber-400 basis-1/2">
-                <p>image</p>
+
+            <div class=" basis-1/2 flex justify-center ">
+                <img src="Images\PokerCard.png" alt="">
 
             </div>
         </div>
-      
+
     </article>
-    
+
 
 </body>
 

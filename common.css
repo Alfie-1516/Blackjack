@@ -1,3 +1,8 @@
+/* 
+Background : #f5f5f5
+Call to action : #8db48e
+main text : #4d724d
+ */
 @import "tailwindcss";
 @media (max-width: 800px) {
   .extra_content {
@@ -18,7 +23,7 @@
   }
 }
 .start_play{
-  background-color: #7150e9;
+  background-color: #8db48e;
   width: 9rem;
   height: 2.5rem; 
   display: flex;
@@ -42,8 +47,7 @@ nav {
   height: 10vh;
   padding: 0 5rem;
   color: black;
-  background-color: #f8fef7;
-  border-bottom: solid 1px #000;
+  background-color: #f5f5f5;
 }
 nav ul {
   display: flex;
@@ -73,4 +77,8 @@ nav ul {
   font-weight: bold;
   margin-bottom: 1rem;
   text-align: left;
+}
+.hand_rankings li {
+  margin-bottom: 1rem; /* Adds spacing between list items */
+  line-height: 1.5; /* Improves readability by increasing line height */
 }
