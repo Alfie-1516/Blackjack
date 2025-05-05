@@ -35,7 +35,7 @@ main text : #4d724d
 .start_play a{
   color: white;
 }
-p{
+.rules_container p{
   font-size: 20px;
   margin: 20px 0;
 }

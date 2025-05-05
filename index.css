@@ -38,25 +38,22 @@ body {
   font-size: 70px;
   margin: 20px 0;
 }
-#whyUs p {
-  font-size: 20px;
-  margin: 20px 0;
-}
+
 main {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
   height: 90vh;
-  background: linear-gradient(to bottom right, lightgreen, rgb(14, 189, 14));
+  background-color: #f5f5f5;
   padding: 0 5rem;
 }
 #main_content {
   width: 60%;
-  height: 100%;
 }
 #start_play_button {
-  background-color: #7150e9;
+  background-color: #4d724d;
   width: 10rem;
   height: 3rem;
   border: none;
