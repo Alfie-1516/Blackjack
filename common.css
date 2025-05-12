@@ -66,9 +66,11 @@ nav ul {
   width: 100vw;
   height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: start;
+  justify-content: start;
+  overflow: hidden;
   scroll-snap-align: start;
+  padding-top: 3rem;
   padding-left: 5rem;
   padding-right: 5rem;
 }
@@ -81,4 +83,10 @@ nav ul {
 .hand_rankings li {
   margin-bottom: 1rem; /* Adds spacing between list items */
   line-height: 1.5; /* Improves readability by increasing line height */
+}
+.rules_reg{
+  font-size: 50px;
+  font-weight: 600;
+  margin-bottom: 5rem;
+  
 }
