@@ -22,20 +22,20 @@ main text : #4d724d
     background-color: lightgray;
   }
 }
-.start_play{
+.start_play {
   background-color: #4d724d;
   width: 9rem;
-  height: 2.5rem; 
+  height: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius:  20px;
+  border-radius: 20px;
   color: white;
 }
-.start_play a{
+.start_play a {
   color: white;
 }
-.rules_container p{
+.rules_container p {
   font-size: 20px;
   margin: 20px 0;
 }
@@ -62,7 +62,7 @@ nav ul {
   text-decoration: none;
   font-family: "Nunito Sans", sans-serif;
 }
-.rules_container{
+.rules_container {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -74,7 +74,7 @@ nav ul {
   padding-left: 5rem;
   padding-right: 5rem;
 }
-.rules_item_title{
+.rules_item_title {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 1rem;
@@ -84,9 +84,13 @@ nav ul {
   margin-bottom: 1rem; /* Adds spacing between list items */
   line-height: 1.5; /* Improves readability by increasing line height */
 }
-.rules_reg{
+.rules_reg {
   font-size: 50px;
   font-weight: 600;
   margin-bottom: 5rem;
-  
 }
+.table_container{
+  height: 100vh;
+}
+
+

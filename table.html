@@ -10,7 +10,7 @@
     <title>Gaming Table</title>
 </head>
 
-<body class="bg-[#f5f5f5]">
+<body class="bg-[#f5f5f5] h-screen overflow-hidden">
     <header></header>
     <nav>
         <h1>Poker</h1>
@@ -18,13 +18,16 @@
         <ul>
             <li><a href="index.html" class="nav_item">Home</a></li>
             <li><a href="rules.html" class="nav_item">Rules</a></li>
-            <li class="start_play"><a href="table.html"  class="nav_item">Start Playing</a></li>
+            <li class="start_play"><a href="table.html" class="nav_item">Start Playing</a></li>
         </ul>
         <h1>Poker</h1>
     </nav>
-    <main>
-        <section>
-            <h2>Player's Card</h2>
+    <main class=" flex justify-center items-ceneter">
+        
+        <img src="Images\poker_table.webp" alt="" class="object-cover absolute -z-10 top-0 left-0">
+        <section
+            class="absolute top-32 right-10 w-24 h-24 flex items-center justify-center rounded-full bg-green-700 shadow-lg z-10">
+            <h2 class="text-white text-center text-base font-bold">Player's Card</h2>
             <li></li>
         </section>
         <section>
@@ -49,14 +52,14 @@
         <input type="number" id="bet_amount" placeholder="Enter amount" class="border-2 border-gray-300 rounded-md p-2">
         <button id="bet_button" class="bg-blue-500 text-white rounded-md p-2 mt-2">Set Bet Roll</button>
     </div> -->
-    <div class="w-2/5 h-80 bg-amber-400 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50" id="bet_modal" style="display: block;">
+    <!-- <div class="w-2/5 h-80 bg-amber-400 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50" id="bet_modal" style="display: block;">
         <h1>Place Bet</h1>
         <p>How much will you like to bet </p>
         <input type="number" id="raise_amount" placeholder="Enter amount" class="border-2 border-gray-300 rounded-md p-2">
         <button class="bg-blue-500 text-white rounded-md p-2 mt-2" onclick="make_wager('Raise')">Raise</button>
         <button  class="bg-blue-500 text-white rounded-md p-2 mt-2" onclick="make_wager('Call')">Call</button>
         <button class="bg-blue-500 text-white rounded-md p-2 mt-2" onclick="make_wager('Check')">Check</button>
-    </div>
+    </div> -->
     <footer></footer>
 </body>
 

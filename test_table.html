@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="common.css">
+    <script src="poker.js" defer></script>
+    <title>Gaming Table</title>
+</head>
+
+<body class="bg-[#f5f5f5] h-screen ">
+    <header></header>
+    <nav>
+        <h1>Poker</h1>
+
+        <ul>
+            <li><a href="index.html" class="nav_item">Home</a></li>
+            <li><a href="rules.html" class="nav_item">Rules</a></li>
+            <li class="start_play"><a href="table.html" class="nav_item">Start Playing</a></li>
+        </ul>
+        <h1>Poker</h1>
+    </nav>
+    <main class="table_container flex  w-screen justify-center items-ceneter">
+        <div class="w-1/4 h-full bg-amber-400">
+            <div class="flex flex-row justify-between">
+                <div>
+                    <p>PLayer 2</p>
+                </div>
+
+                <div class="flex">
+                    <img class="card w-5/12" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
+                    <img class="card w-5/12" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+        <div class="w-9/12 h-full bg-red-800 flex flex-col">
+            <div
+                class="w-full h-[65%] flex bg-[url('Images/poker_table.webp')] justify-center items-center bg-cover bg-center bg-no-repeat ">
+
+
+                <div class="flex justify-evenly  items-center w-3/6 ">
+                    <img class="card w-2/12" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
+                    <img class="card w-2/12" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
+                    <img class="card w-2/12" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
+                </div>
+
+            </div>
+            <div class="w-full h-[35%] bg-amber-50 flex justify-evenly items-center">
+
+                <img class="card" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
+                <img class="card" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
+
+            </div>
+
+        </div>
+        <!-- <div
+            class="w-11/12 h-4/5 bg-[url('Images/poker_table.webp')] bg-contain bg-no-repeat bg-center flex justify-center items-center">
+            <section
+            class=" w-24 h-24 flex items-center justify-center rounded-full bg-green-700 shadow-lg z-10">
+            <h2 class="text-white text-center text-base font-bold">Player's Card</h2>
+            <li></li>
+        </section>
+        </div> -->
+
+
+
+    </main>
+
+    <footer></footer>
+</body>
+
+</html>
