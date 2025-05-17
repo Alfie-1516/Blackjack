@@ -32,7 +32,10 @@ function start_game() {
 
   dealToPlayers(shuffledDeck, players);
   startBettingRound("pre-flop", players);
+  getSetPlayerCards(players[1]); // Display player 1's cards
+  getSetPlayerCards(players[0]); // Display player 1's cards
   const flop = dealFlop(shuffledDeck);
+  setFlopCards(flop); // Display flop cards
 }
 
 // Function to set the bank roll
@@ -104,18 +107,21 @@ function deal_card(deck) {
 }
 function create_players() {
   const player1 = {
+    id: 1,
     name: "Player 1",
     hand: [],
     chips: 1000,
     bet: 0,
   };
   const player2 = {
+    id: 2,
     name: "Player 2",
     hand: [],
     chips: 1000,
     bet: 0,
   };
   const player3 = {
+    id: 3,
     name: "Player 3",
     hand: [],
     chips: 1000,
@@ -150,7 +156,7 @@ function dealRiver(deck) {
 function startBettingRound(betting_state, players) {
   switch (betting_state) {
     case "pre-flop":
-     const agreedSmallBlind = 10;
+      const agreedSmallBlind = 10;
       const raise_amount = 20;
       pot = 0;
 
@@ -158,19 +164,23 @@ function startBettingRound(betting_state, players) {
       players[0].chips -= agreedSmallBlind;
       players[0].bet += agreedSmallBlind;
       pot += agreedSmallBlind;
-      console.log(`${players[0].name} posts small blind of ${agreedSmallBlind}`);
+      console.log(
+        `${players[0].name} posts small blind of ${agreedSmallBlind}`
+      );
 
       // Big Blind - Player 2
       const bigBlindTotal = agreedSmallBlind * 2 + raise_amount;
       players[1].chips -= bigBlindTotal;
       players[1].bet += bigBlindTotal;
       pot += bigBlindTotal;
-      console.log(`${players[1].name} posts big blind + raise of ${bigBlindTotal}`);
+      console.log(
+        `${players[1].name} posts big blind + raise of ${bigBlindTotal}`
+      );
 
       console.log("The pot is now:", pot);
 
       // Start betting from the next player (after big blind)
-      const startingIndex = (2) % players.length;
+      const startingIndex = 2 % players.length;
       simpleRoundOfBetting(players, startingIndex);
 
       console.log("Pre-flop betting round started.");
@@ -225,4 +235,52 @@ function simpleRoundOfBetting(players, startingIndex) {
 
     index = (index + 1) % players.length;
   }
+}
+function formatCard(card) {
+   const faceCardMap = {
+    J: "jack",
+    Q: "queen",
+    K: "king",
+    A: "ace",
+  };
+  let value = card.value;
+
+  // Check and convert face cards
+  if (faceCardMap[value]) {
+    value = faceCardMap[value];
+  }
+
+  return `${value.toLowerCase()}_of_${card.suit.toLowerCase()}.svg`;
+}
+
+function getSetPlayerCards(player) {
+  // Make sure player has a hand with at least 2 cards
+ 
+
+  // Get the card image elements
+  const card1File = formatCard(player.hand[0]);
+  const card2File = formatCard(player.hand[1]);
+  console.log(card1File);
+  console.log(player.hand[1]);
+  document.getElementById(
+    `p${player.id}_card_1`
+  ).src = `Images/Playing_Cards/SVG-cards-1.3/${card1File}`;
+  document.getElementById(
+    `p${player.id}_card_2`
+  ).src = `Images/Playing_Cards/SVG-cards-1.3/${card2File}`;
+}
+function setFlopCards(flop) {
+  const card1File = formatCard(flop[0]);
+  const card2File = formatCard(flop[1]);
+  const card3File = formatCard(flop[2]);
+
+  document.getElementById(
+    "flop_1"
+  ).src = `Images/Playing_Cards/SVG-cards-1.3/${card1File}`;
+  document.getElementById(
+    "flop_2"
+  ).src = `Images/Playing_Cards/SVG-cards-1.3/${card2File}`;
+  document.getElementById(
+    "flop_3"
+  ).src = `Images/Playing_Cards/SVG-cards-1.3/${card3File}`;
 }
