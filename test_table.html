@@ -23,55 +23,98 @@
         <h1>Poker</h1>
     </nav>
     <main class="table_container flex  w-screen justify-center items-ceneter">
-        
+
         <div class="w-1/4 h-full bg-amber-400">
             <div class="flex flex-row justify-between">
                 <div>
                     <p>PLayer 2</p>
+                    <p id="p2_chips"></p>
                     <button onclick="start_game()">Trigger Bet Modal</button>
                 </div>
-
                 <div class="player_2 flex">
-                    <img class="card w-5/12" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="" id="p2_card_1">
-                    <img class="card w-5/12" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="" id="p2_card_2">
+                    <img class="card w-5/12" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt=""
+                        id="p2_card_1">
+                    <img class="card w-5/12" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt=""
+                        id="p2_card_2">
                 </div>
-
-
-
+            </div>
+            <div class="flex flex-row justify-between">
+                <div>
+                    <p>PLayer 3</p>
+                    <p id="p3_chips"></p>
+                    <button onclick="start_game()">Trigger Bet Modal</button>
+                </div>
+                <div class="player_2 flex">
+                    <img class="card w-5/12" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt=""
+                        id="p3_card_1">
+                    <img class="card w-5/12" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt=""
+                        id="p3_card_2">
+                </div>
             </div>
 
 
         </div>
         <div class="w-9/12 h-full bg-red-800 flex flex-col">
             <div
-                class="w-full h-[65%] flex bg-[url('Images/poker_table.webp')] justify-center items-center bg-cover bg-center bg-no-repeat ">
+                class="w-full h-[65%] flex flex-col bg-[url('Images/poker_table.webp')] justify-center items-center bg-cover bg-center bg-no-repeat ">
 
-
+                <div class="h-52 bg-amber-600 flex justify-center items-center flex-col">
+                    <p class="text-2xl" id="pot">pot Value</p>
+                    <img src="Images\small.jpg" alt="" class="h-40 w-40" id="potImage">
+                </div>
                 <div class="flex justify-evenly  items-center w-3/6 ">
                     <img class="card w-2/12" id="flop_1" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
                     <img class="card w-2/12" id="flop_2" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
                     <img class="card w-2/12" id="flop_3" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
-                    <img class="card w-2/12" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
-                    <img class="card w-2/12" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
+                    <img class="card w-2/12" id="turn" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
+                    <img class="card w-2/12" id="river" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
                 </div>
 
-            </div>
-            <div class="w-full h-[35%] bg-amber-50 flex justify-evenly items-center">
 
-                <img id="p1_card_1" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
-                <img id="p1_card_2" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
+            </div>
+            <div class="w-full h-[35%] bg-amber-50 flex justify-between items-center">
+                <div class="basis-1/4">
+                    <p>player 1</p>
+                    <div class="flex">
+                        <p >Chips Remaining: $</p>
+                        <p id="p1_chips"></p>
+                    </div>
+                    <div class="flex">
+                        <p >Current Best Hand </p>
+                        <p id="p1_hand"></p>
+                    </div>
+
+                    <div class="flex">
+                        <p >Current Hand Rank </p>
+                        <p id="p1_rank"></p>
+
+                    </div>
+                    
+                </div>
+                <div class="basis-1/4 flex">
+                    <img id="p1_card_1" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
+                    <img id="p1_card_2" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
+                </div>
+                <div class="basis-1/4 bg-amber-400 h-full " id="bet_modal" style="display: block;">
+                    <h1>Place Bet</h1>
+                    <p>How much will you like to bet </p>
+                    <div class="flex">
+                        <input type="number" id="raise_amount" placeholder="Enter amount"
+                            class="border-2 border-gray-300 rounded-md p-2">
+                        <button class="action-button" id="raise">Raise</button>
+                        <button class="action-button" id="call">Call</button>
+                        <button class="action-button" id="check">Check</button>
+                    </div>
+
+                </div>
+
+
+
 
             </div>
 
         </div>
-        <!-- <div
-            class="w-11/12 h-4/5 bg-[url('Images/poker_table.webp')] bg-contain bg-no-repeat bg-center flex justify-center items-center">
-            <section
-            class=" w-24 h-24 flex items-center justify-center rounded-full bg-green-700 shadow-lg z-10">
-            <h2 class="text-white text-center text-base font-bold">Player's Card</h2>
-            <li></li>
-        </section>
-        </div> -->
+
 
 
 
