@@ -29,7 +29,7 @@
                 <div>
                     <p>PLayer 2</p>
                     <p id="p2_chips"></p>
-                    <button onclick="start_game()">Trigger Bet Modal</button>
+                    <p id="p2_round_bet"></p>
                 </div>
                 <div class="player_2 flex">
                     <img class="card w-5/12" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt=""
@@ -42,7 +42,7 @@
                 <div>
                     <p>PLayer 3</p>
                     <p id="p3_chips"></p>
-                    <button onclick="start_game()">Trigger Bet Modal</button>
+                    <p id="p3_round_bet"></p>
                 </div>
                 <div class="player_2 flex">
                     <img class="card w-5/12" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt=""
@@ -76,26 +76,30 @@
                 <div class="basis-1/4">
                     <p>player 1</p>
                     <div class="flex">
-                        <p >Chips Remaining: $</p>
                         <p id="p1_chips"></p>
                     </div>
                     <div class="flex">
-                        <p >Current Best Hand </p>
+                        <p id="p1_round_bet"></p>
+                    </div>
+                    <div class="flex">
+                        <p>Current Best Hand </p>
                         <p id="p1_hand"></p>
                     </div>
 
                     <div class="flex">
-                        <p >Current Hand Rank </p>
+                        <p>Current Hand Rank </p>
                         <p id="p1_rank"></p>
 
                     </div>
-                    
+
                 </div>
                 <div class="basis-1/4 flex">
                     <img id="p1_card_1" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
                     <img id="p1_card_2" src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg" alt="">
                 </div>
                 <div class="basis-1/4 bg-amber-400 h-full " id="bet_modal" style="display: block;">
+                    <h1>Previous Plays</h1>
+                    <p id="plays">Player On Raises</p>
                     <h1>Place Bet</h1>
                     <p>How much will you like to bet </p>
                     <div class="flex">
@@ -104,6 +108,10 @@
                         <button class="action-button" id="raise">Raise</button>
                         <button class="action-button" id="call">Call</button>
                         <button class="action-button" id="check">Check</button>
+                    </div>
+                    <div>
+                        <button class="action-button" id="fold">Fold</button>
+                        <button class="action-button" id="all_in">All In</button>
                     </div>
 
                 </div>
@@ -121,6 +129,18 @@
     </main>
 
     <footer></footer>
+    <aside class="winner_model bg-white p-8 rounded-lg shadow-lg flex flex-col items-center gap-10 border" id="winner_model" style="width: 30rem;">
+        <h2 class="text-2xl font-bold mb-4 text-green-700">Round Over</h2>
+        <p class="text-lg mb-2 font-semibold" id="winner_name">Winner: Player 1</p>
+        <p class="text-lg mb-6" id="winner_earnings">Earnings: $1500</p>
+        <div class="flex gap-4">
+            <button class="start_play"
+                onclick="nextRound()">Next Round</button>
+            <button class="start_play" onclick="start_game()">Start
+                New Game</button>
+        </div>
+    </aside>
+
 </body>
 
 </html>

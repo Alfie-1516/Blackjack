@@ -3,6 +3,10 @@ var pot = 0;
 let playerTurn = false;
 let raiseAmount = 0;
 let bettingComplete = false;
+let players = [];
+let flop = [];
+let turn = "";
+let river = "";
 
 const betButton = document.getElementById("bet_button");
 const betAmountInput = document.getElementById("bet_amount");
@@ -11,6 +15,8 @@ const onScreenPot = document.getElementById("pot");
 const p1Chips = document.getElementById("p1_chips");
 const p2Chips = document.getElementById("p2_chips");
 const p3Chips = document.getElementById("p3_chips");
+const optionModel = document.getElementById("winner_model");
+const onScreenPlays = document.getElementById("plays");
 
 // Event listener for the bet button
 betButton.addEventListener("click", () => {
@@ -25,25 +31,28 @@ betButton.addEventListener("click", () => {
 function getPot() {
   return pot;
 }
+
 function updatePotOnScreen(players) {
-  updatePotImage(pot)
+  updatePotImage(pot);
   if (onScreenPot) {
     onScreenPot.textContent = `Pot Value: $${pot}`;
-    p1Chips.textContent = ` ${players[0].chips}`;
-    p2Chips.textContent = `Chips Remaining: $${players[1].chips}`;
-    p3Chips.textContent = `Chips Remaining: $${players[2].chips}`;
+    for (let count = 0; count <= players.length; count++) {
+      const pChips = document.getElementById(`p${count + 1}_chips`);
+      const pBet = document.getElementById(`p${count + 1}_round_bet`);
+      if (pChips)
+        pChips.textContent = `Chips Remaining: $${players[count].chips}`;
+      if (pBet) pBet.textContent = `Round Bet: $${players[count].bet}`;
+    }
   }
 }
-function showBestHand(player){
-  rank = document.getElementById("p1_rank")
-  hand = document.getElementById("p1_hand")
-  rank.textContent = `: ${player.bestHand.rank}`
-  hand.textContent = `: ${player.bestHand.name}`
-  console.log(player.bestHand.rank)
-  console.log(player.bestHand.name)
+function showBestHand(player) {
+  rank = document.getElementById("p1_rank");
+  hand = document.getElementById("p1_hand");
+  rank.textContent = `: ${player.bestHand.rank}`;
+  hand.textContent = `: ${player.bestHand.name}`;
 }
-function updatePotImage(pot){
- const potImage = document.getElementById("potImage");
+function updatePotImage(pot) {
+  const potImage = document.getElementById("potImage");
   if (!potImage) return;
 
   if (pot < 100) {
@@ -61,29 +70,36 @@ function timeToBet() {
 }
 
 async function start_game() {
+  hideAllCards();
+  generateOptionsArray(players, -1);
+  optionModel.style.display = "none";
   onScreenPot.textContent = `Updated Pot: $${pot}`;
   const deck = shuffleDeck(createDeck());
-  const players = createPlayers();
+  players = createPlayers();
   dealToPlayers(deck, players);
   getSetPlayerCards(players[1]);
   getSetPlayerCards(players[0]);
   getSetPlayerCards(players[2]);
   await startBettingRound("flop", players);
-
-  console.log("All players have matched the highest bet or are all in.");
-  console.log("End of pre-flop betting round.");
-  const flop = dealFlop(deck);
+  flop = dealFlop(deck);
   setFlopCards(flop);
   await startBettingRound("turn", players);
-  const turn = dealTurn(deck);
+  turn = dealTurn(deck);
   setTurnCard(turn);
   await startBettingRound("river", players);
-  const river = dealRiver(deck);
+  river = dealRiver(deck);
   setRiverCard(river);
   await startBettingRound("final", players);
   const communityCards = [...flop, turn, river];
   checkPlayersBestHands(players, communityCards);
-  showBestHand(players[0])
+  showBestHand(players[0]);
+  wining_player = getWinner(players);
+  wining_player.chips += pot;
+  gameSummary(wining_player, pot);
+  pot = 0;
+  updatePotImage(pot);
+  updatePotOnScreen(players);
+  optionModel.style.display = "block";
 }
 
 function setBankRoll(value) {
@@ -113,13 +129,13 @@ async function make_wager() {
   switch (action) {
     case "Raise":
       raiseAmount = betAmount;
-      console.log(`Player raised to ${raiseAmount}`);
+      onScreenPlays.textContent = `Player raised to ${raiseAmount}`;
       break;
     case "Call":
-      console.log(`Player called with ${betAmount}`);
+      onScreenPlays.textContent = `Player called with ${betAmount}`;
       break;
     case "Check":
-      console.log("Player checked");
+      onScreenPlays.textContent = "Player checked";
       break;
     default:
       console.error("Unknown action:", action);
@@ -159,9 +175,36 @@ function deal_card(deck) {
 
 function createPlayers() {
   return [
-    { id: 1, name: "Player 1", hand: [], chips: 1000, bet: 0, timesPlayed: 0 },
-    { id: 2, name: "Player 2", hand: [], chips: 1000, bet: 0, timesPlayed: 0 },
-    { id: 3, name: "Player 3", hand: [], chips: 1000, bet: 0, timesPlayed: 0 },
+    {
+      id: 1,
+      name: "Player 1",
+      hand: [],
+      chips: 1000,
+      bet: 0,
+      timesPlayed: 0,
+      fold: false,
+      allIn: false,
+    },
+    {
+      id: 2,
+      name: "Player 2",
+      hand: [],
+      chips: 1000,
+      bet: 0,
+      timesPlayed: 0,
+      fold: false,
+      allIn: false,
+    },
+    {
+      id: 3,
+      name: "Player 3",
+      hand: [],
+      chips: 1000,
+      bet: 0,
+      timesPlayed: 0,
+      fold: false,
+      allIn: false,
+    },
   ];
 }
 
@@ -194,12 +237,14 @@ async function startBettingRound(bettingState, players) {
       players[0].chips -= smallBlind;
       players[0].bet += smallBlind;
       players[0].timesPlayed += 1;
-      players[1].timesPlayed += 1;
+
       pot += smallBlind;
       updatePotOnScreen(players);
-      console.log(`${players[0].name} posts small blind of ${smallBlind}`);
+      onScreenPlays.textContent = `${players[0].name} posts small blind of ${smallBlind}`;
+      generateOptionsArray(players, 10);
 
       const action = await waitForPlayerAction(); // Await player's action
+      players[1].timesPlayed += 1;
       const betAmountInput =
         parseFloat(document.getElementById("raise_amount").value) || 0;
 
@@ -214,9 +259,7 @@ async function startBettingRound(bettingState, players) {
             players[1].chips -= totalRaise;
             players[1].bet += totalRaise;
             pot += totalRaise;
-            console.log(
-              `${players[1].name} raises by ${betAmountInput}. Total bet: ${players[1].bet}. Pot: ${pot}`
-            );
+            onScreenPlays.textContent = `${players[1].name} raises by ${betAmountInput}. Total bet: ${players[1].bet}. Pot: ${pot}`;
           } else {
             console.log(`${player.name} does not have enough chips to raise.`);
           }
@@ -227,9 +270,7 @@ async function startBettingRound(bettingState, players) {
             players[1].chips -= bigBlind;
             players[1].bet += bigBlind;
             pot += bigBlind;
-            console.log(
-              `${players[1].name} calls. Bet: ${players[1].bet}. Pot: ${pot}`
-            );
+            onScreenPlays.textContent = `${players[1].name} calls. Bet: ${players[1].bet}. Pot: ${pot}`;
           } else {
             console.log(
               `${players[1].name} does not have enough chips to call.`
@@ -246,7 +287,6 @@ async function startBettingRound(bettingState, players) {
     case "turn":
       console.log("Turn betting round started.");
       resetBets_TimesPlayed(players);
-      console.log(players);
       bettingComplete = !bettingComplete;
       await simpleRoundOfBetting(players, 0);
 
@@ -254,14 +294,12 @@ async function startBettingRound(bettingState, players) {
     case "river":
       console.log("River betting round started.");
       resetBets_TimesPlayed(players);
-      console.log(players);
       bettingComplete = !bettingComplete;
       await simpleRoundOfBetting(players, 0);
       break;
     case "final":
       console.log("Final betting round started.");
       resetBets_TimesPlayed(players);
-      console.log(players);
       bettingComplete = !bettingComplete;
       await simpleRoundOfBetting(players, 0);
       break;
@@ -271,17 +309,21 @@ async function startBettingRound(bettingState, players) {
 }
 
 function getHighestBet(players) {
-  return Math.max(...players.map((player) => player.bet));
+  return Math.max(
+    ...players.filter((player) => !player.fold).map((player) => player.bet)
+  );
 }
 
 function checkAllBets(players) {
   const highestBet = getHighestBet(players);
-  return players.every((player) => player.bet === highestBet);
+  return players.every((player) => player.fold || player.bet === highestBet);
 }
 
 function checkTimesPlayed(players) {
   const minTimesPlayed = 1;
-  return players.every((player) => player.timesPlayed >= minTimesPlayed);
+  return players.every(
+    (player) => player.fold || player.timesPlayed >= minTimesPlayed
+  );
 }
 function resetBets_TimesPlayed(players) {
   players.forEach((player) => {
@@ -292,13 +334,14 @@ function resetBets_TimesPlayed(players) {
 
 async function simpleRoundOfBetting(players, startingIndex) {
   let index = startingIndex;
-
+  let foldedPlayers = 0;
+  let allInPlayers = 0;
   while (!bettingComplete) {
     const player = players[index];
     const highestBet = getHighestBet(players);
     const amountToCall = highestBet - player.bet;
-
-    if (player.chips > 0) {
+    generateOptionsArray(players, amountToCall);
+    if ((player.chips > 0) & (player.fold === false)) {
       console.log(
         `${player.name}'s turn. Chips: ${player.chips}, Current Bet: ${player.bet}, Amount to Call: ${amountToCall}`
       );
@@ -307,7 +350,7 @@ async function simpleRoundOfBetting(players, startingIndex) {
       const action = await waitForPlayerAction(); // Await player's action
       const betAmountInput =
         parseFloat(document.getElementById("raise_amount").value) || 0;
-      generateOptionsArray(players)
+
       switch (action) {
         case "Raise":
           if (betAmountInput <= 0) {
@@ -319,9 +362,7 @@ async function simpleRoundOfBetting(players, startingIndex) {
             player.chips -= totalRaise;
             player.bet += totalRaise;
             pot += totalRaise;
-            console.log(
-              `${player.name} raises by ${betAmountInput}. Total bet: ${player.bet}. Pot: ${pot}`
-            );
+            onScreenPlays.textContent = `${player.name} raises by ${betAmountInput}. Total bet: ${player.bet}. Pot: ${pot}`;
           } else {
             console.log(`${player.name} does not have enough chips to raise.`);
           }
@@ -332,35 +373,57 @@ async function simpleRoundOfBetting(players, startingIndex) {
             player.chips -= amountToCall;
             player.bet += amountToCall;
             pot += amountToCall;
-            console.log(
-              `${player.name} calls. Bet: ${player.bet}. Pot: ${pot}`
-            );
+            onScreenPlays.textContent = `${player.name} calls. Bet: ${player.bet}. Pot: ${pot}`;
           } else {
             console.log(`${player.name} does not have enough chips to call.`);
           }
           break;
 
-        case "Check":
-          if (amountToCall === 0) {
-            console.log(`${player.name} checks.`);
+        case "Fold":
+          player.fold = true;
+          onScreenPlays.textContent = `${player.name} folds.`;
+          break;
+        case "All In":
+          if (player.chips > 0) {
+            player.bet += player.chips;
+            pot += player.chips;
+            onScreenPlays.textContent = `${player.name} goes all in with ${player.chips}. Total bet: ${player.bet}. Pot: ${pot}`;
+            player.chips = 0;
           } else {
             console.log(
-              `${player.name} cannot check. There is an outstanding bet of ${amountToCall}.`
+              `${player.name} does not have enough chips to go all in.`
             );
+          }
+          break;
+
+        case "Check":
+          if (amountToCall === 0) {
+            onScreenPlays.textContent = `${player.name} checks.`;
+          } else {
+            onScreenPlays.textContent = `${player.name} cannot check. There is an outstanding bet of ${amountToCall}.`;
           }
           break;
 
         default:
           console.error("Unknown action:", action);
       }
+    } else if (player.fold) {
+      console.log(`${player.name} has folded.`);
+      foldedPlayers += 1;
     } else {
       console.log(`${player.name} is all in.`);
+      allInPlayers += 1;
     }
     console.log(players);
+    console.log(`Folded Players: ${foldedPlayers}`);
+    console.log(`All In Players: ${allInPlayers}`);
     // Check if all players have matched the highest bet or are all in
     if (checkTimesPlayed(players)) {
       bettingComplete = checkAllBets(players);
+    } else if (foldedPlayers + allInPlayers === players.length) {
+      bettingComplete = true;
     }
+
     updatePotOnScreen(players);
 
     // Move to the next player
@@ -374,7 +437,27 @@ function formatCard(card) {
   let value = faceCardMap[card.value] || card.value;
   return `${value.toLowerCase()}_of_${card.suit.toLowerCase()}.svg`;
 }
-
+function checkMaxChips(players) {
+  const maxChips = Math.max(...players.map((player) => player.chips));
+  return maxChips;
+}
+function hideAllCards() {
+  document.getElementById(
+    "flop_1"
+  ).src = `Images/back_of_card.jpg`;
+  document.getElementById(
+    "flop_2"
+  ).src = `Images/back_of_card.jpg`;
+  document.getElementById(
+    "flop_3"
+  ).src = `Images/back_of_card.jpg`;
+  document.getElementById(
+    "turn"
+  ).src = `Images/back_of_card.jpg`;
+  document.getElementById(
+    "river"
+  ).src = `Images/back_of_card.jpg`;
+}
 function getSetPlayerCards(player) {
   if (!player.hand || player.hand.length < 2) return;
   const card1File = formatCard(player.hand[0]);
@@ -509,22 +592,28 @@ function evaluateBestHand(cards) {
   if (pairs === 1) return { rank: 2, name: "One Pair" };
   return { rank: 1, name: "High Card" };
 }
-function generateOptionsArray(players) {
+function generateOptionsArray(players, amountToCall) {
   maxBet = getHighestBet(players);
-  if (maxBet === 0) {
+  const raiseButton = document.getElementById("raise");
+  raiseButton.style.display = "block";
+  if (amountToCall === -1) {
     const raiseButton = document.getElementById("raise");
-    raiseButton.style.display =  "block"
-    const checkButton = document.getElementById("check");
-    checkButton.style.display =  "block"
-     const callButton = document.getElementById("call");
-    callButton.style.display =  "none"
-  } else {
-    const raiseButton = document.getElementById("raise");
-    raiseButton.style.display =  "block"
+    raiseButton.style.display = "block";
     const callButton = document.getElementById("call");
-    callButton.style.display =  "block"
-    const checkButton = document.getElementById("check");
-    checkButton.style.display =  "none"
+    callButton.style.display = "block";
+  } else {
+    if (amountToCall === 0) {
+      console.log(amountToCall);
+      const checkButton = document.getElementById("check");
+      checkButton.style.display = "block";
+      const callButton = document.getElementById("call");
+      callButton.style.display = "none";
+    } else {
+      const callButton = document.getElementById("call");
+      callButton.style.display = "block";
+      const checkButton = document.getElementById("check");
+      checkButton.style.display = "none";
+    }
   }
 }
 // Example usage for all players:
@@ -533,4 +622,68 @@ function checkPlayersBestHands(players, communityCards) {
     const allCards = [...player.hand, ...communityCards];
     player.bestHand = evaluateBestHand(allCards);
   });
+}
+function gameSummary(player, earning) {
+  const onScreenWinner = document.getElementById("winner_name");
+  const onScreenEarning = document.getElementById("winner_earnings");
+
+  onScreenWinner.textContent = `Winner: ${player.name}`;
+  onScreenEarning.textContent = `Earnings: $${earning}`;
+}
+
+function getWinner(players) {
+  // Only consider players who have not folded
+  const activePlayers = players.filter((player) => !player.fold);
+  let bestPlayer = activePlayers[0];
+  activePlayers.forEach((player) => {
+    if (player.bestHand.rank > bestPlayer.bestHand.rank) {
+      bestPlayer = player;
+    }
+  });
+  return bestPlayer;
+}
+async function nextRound() {
+  hideAllCards();
+  bettingComplete = false;
+  players.forEach((player) => {
+    if (player.chips > 0) {
+      player.hand = [];
+      player.bet = 0;
+      player.timesPlayed = 0;
+      player.fold = false;
+      // Keep player.chips and other stats as is
+    }
+  });
+  generateOptionsArray(players, -1);
+  optionModel.style.display = "none";
+  onScreenPot.textContent = `Updated Pot: $${pot}`;
+  const deck = shuffleDeck(createDeck());
+  dealToPlayers(deck, players);
+  getSetPlayerCards(players[1]);
+  getSetPlayerCards(players[0]);
+  getSetPlayerCards(players[2]);
+  await startBettingRound("flop", players);
+  console.log(checkTimesPlayed(players));
+
+  console.log("All players have matched the highest bet or are all in.");
+  console.log("End of pre-flop betting round.");
+  flop = dealFlop(deck);
+  setFlopCards(flop);
+  await startBettingRound("turn", players);
+  turn = dealTurn(deck);
+  setTurnCard(turn);
+  await startBettingRound("river", players);
+  river = dealRiver(deck);
+  setRiverCard(river);
+  await startBettingRound("final", players);
+  const communityCards = [...flop, turn, river];
+  checkPlayersBestHands(players, communityCards);
+  showBestHand(players[0]);
+  wining_player = getWinner(players);
+  wining_player.chips += pot;
+  gameSummary(wining_player, pot);
+  pot = 0;
+  updatePotImage(pot);
+  updatePotOnScreen(players);
+  optionModel.style.display = "block";
 }
