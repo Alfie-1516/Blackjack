@@ -94,6 +94,7 @@ async function start_game() {
   checkPlayersBestHands(players, communityCards);
   showBestHand(players[0]);
   wining_player = getWinner(players);
+  console.log(wining_player);
   wining_player.chips += pot;
   gameSummary(wining_player, pot);
   pot = 0;
@@ -184,6 +185,7 @@ function createPlayers() {
       timesPlayed: 0,
       fold: false,
       allIn: false,
+      out: false,
     },
     {
       id: 2,
@@ -194,6 +196,7 @@ function createPlayers() {
       timesPlayed: 0,
       fold: false,
       allIn: false,
+      out: false,
     },
     {
       id: 3,
@@ -204,6 +207,7 @@ function createPlayers() {
       timesPlayed: 0,
       fold: false,
       allIn: false,
+      out: false,
     },
   ];
 }
@@ -310,19 +314,23 @@ async function startBettingRound(bettingState, players) {
 
 function getHighestBet(players) {
   return Math.max(
-    ...players.filter((player) => !player.fold).map((player) => player.bet)
+    ...players
+      .filter((player) => !player.fold && !player.out)
+      .map((player) => player.bet)
   );
 }
 
 function checkAllBets(players) {
   const highestBet = getHighestBet(players);
-  return players.every((player) => player.fold || player.bet === highestBet);
+  return players.every(
+    (player) => player.fold || player.out || player.bet === highestBet
+  );
 }
 
 function checkTimesPlayed(players) {
   const minTimesPlayed = 1;
   return players.every(
-    (player) => player.fold || player.timesPlayed >= minTimesPlayed
+    (player) => player.fold || player.out || player.timesPlayed >= minTimesPlayed
   );
 }
 function resetBets_TimesPlayed(players) {
@@ -410,7 +418,12 @@ async function simpleRoundOfBetting(players, startingIndex) {
     } else if (player.fold) {
       console.log(`${player.name} has folded.`);
       foldedPlayers += 1;
-    } else {
+    } 
+    else if(player.chips === 0) {
+      console.log(`${player.name} is out of chips.`);
+      allInPlayers += 1;
+
+    }else {
       console.log(`${player.name} is all in.`);
       allInPlayers += 1;
     }
@@ -633,8 +646,12 @@ function gameSummary(player, earning) {
 
 function getWinner(players) {
   // Only consider players who have not folded
-  const activePlayers = players.filter((player) => !player.fold);
+  console.log(players);
+  const foldedPlayers = players.filter((player) => !player.fold);
+  const activePlayers = foldedPlayers.filter((player) => !player.out);
+
   let bestPlayer = activePlayers[0];
+  console.log(activePlayers);
   activePlayers.forEach((player) => {
     if (player.bestHand.rank > bestPlayer.bestHand.rank) {
       bestPlayer = player;
@@ -642,6 +659,7 @@ function getWinner(players) {
   });
   return bestPlayer;
 }
+
 async function nextRound() {
   hideAllCards();
   bettingComplete = false;
