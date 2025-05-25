@@ -39,9 +39,16 @@ function updatePotOnScreen(players) {
     for (let count = 0; count <= players.length; count++) {
       const pChips = document.getElementById(`p${count + 1}_chips`);
       const pBet = document.getElementById(`p${count + 1}_round_bet`);
-      if (pChips)
-        pChips.textContent = `Chips Remaining: $${players[count].chips}`;
-      if (pBet) pBet.textContent = `Round Bet: $${players[count].bet}`;
+      if (pChips) {
+  pChips.textContent = ` $${players[count].chips}`;
+  pChips.style.color = "green";
+  pChips.style.fontWeight = "200";
+}
+if (pBet) {
+  pBet.textContent = `- $${players[count].bet}`;
+  pBet.style.color = "red";
+  pBet.style.fontWeight = "500";
+}
     }
   }
 }
@@ -77,9 +84,7 @@ async function start_game() {
   const deck = shuffleDeck(createDeck());
   players = createPlayers();
   dealToPlayers(deck, players);
-  getSetPlayerCards(players[1]);
-  getSetPlayerCards(players[0]);
-  getSetPlayerCards(players[2]);
+  players.forEach((player) => getSetPlayerCards(player));
   await startBettingRound("flop", players);
   flop = dealFlop(deck);
   setFlopCards(flop);
@@ -209,6 +214,39 @@ function createPlayers() {
       allIn: false,
       out: false,
     },
+     {
+      id: 4,
+      name: "Player 4",
+      hand: [],
+      chips: 1000,
+      bet: 0,
+      timesPlayed: 0,
+      fold: false,
+      allIn: false,
+      out: false,
+    },
+     {
+      id: 5,
+      name: "Player 5",
+      hand: [],
+      chips: 1000,
+      bet: 0,
+      timesPlayed: 0,
+      fold: false,
+      allIn: false,
+      out: false,
+    },
+     {
+      id: 6,
+      name: "Player 6",
+      hand: [],
+      chips: 1000,
+      bet: 0,
+      timesPlayed: 0,
+      fold: false,
+      allIn: false,
+      out: false,
+    },
   ];
 }
 
@@ -330,7 +368,8 @@ function checkAllBets(players) {
 function checkTimesPlayed(players) {
   const minTimesPlayed = 1;
   return players.every(
-    (player) => player.fold || player.out || player.timesPlayed >= minTimesPlayed
+    (player) =>
+      player.fold || player.out || player.timesPlayed >= minTimesPlayed
   );
 }
 function resetBets_TimesPlayed(players) {
@@ -418,12 +457,10 @@ async function simpleRoundOfBetting(players, startingIndex) {
     } else if (player.fold) {
       console.log(`${player.name} has folded.`);
       foldedPlayers += 1;
-    } 
-    else if(player.chips === 0) {
+    } else if (player.chips === 0) {
       console.log(`${player.name} is out of chips.`);
       allInPlayers += 1;
-
-    }else {
+    } else {
       console.log(`${player.name} is all in.`);
       allInPlayers += 1;
     }
@@ -455,21 +492,11 @@ function checkMaxChips(players) {
   return maxChips;
 }
 function hideAllCards() {
-  document.getElementById(
-    "flop_1"
-  ).src = `Images/back_of_card.jpg`;
-  document.getElementById(
-    "flop_2"
-  ).src = `Images/back_of_card.jpg`;
-  document.getElementById(
-    "flop_3"
-  ).src = `Images/back_of_card.jpg`;
-  document.getElementById(
-    "turn"
-  ).src = `Images/back_of_card.jpg`;
-  document.getElementById(
-    "river"
-  ).src = `Images/back_of_card.jpg`;
+  document.getElementById("flop_1").src = `Images/back_of_card.jpg`;
+  document.getElementById("flop_2").src = `Images/back_of_card.jpg`;
+  document.getElementById("flop_3").src = `Images/back_of_card.jpg`;
+  document.getElementById("turn").src = `Images/back_of_card.jpg`;
+  document.getElementById("river").src = `Images/back_of_card.jpg`;
 }
 function getSetPlayerCards(player) {
   if (!player.hand || player.hand.length < 2) return;
@@ -676,10 +703,7 @@ async function nextRound() {
   optionModel.style.display = "none";
   onScreenPot.textContent = `Updated Pot: $${pot}`;
   const deck = shuffleDeck(createDeck());
-  dealToPlayers(deck, players);
-  getSetPlayerCards(players[1]);
-  getSetPlayerCards(players[0]);
-  getSetPlayerCards(players[2]);
+  players.forEach((player) => getSetPlayerCards(player));
   await startBettingRound("flop", players);
   console.log(checkTimesPlayed(players));
 

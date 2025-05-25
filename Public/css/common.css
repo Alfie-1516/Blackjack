@@ -91,6 +91,7 @@ nav ul {
 }
 .table_container{
   height: 100vh;
+  padding: 2rem;
 }
 .winner_model {
   position: absolute;
@@ -105,5 +106,35 @@ nav ul {
   align-items: center;
   width: 50rem;
   height: 30rem;
+}
+.card{
+  width: 7rem;
+}
+.player_info{
+  font-size: 18px;
+  margin-right: 10px;
+}
+.player_info_value{
+  font-size: 18px;
+
+}
+.player_name{
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 10px;
+}
+#bet_modal{
+  padding-bottom: 3rem;
+}
+.action-button {
+  width: 5rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  color: white;
+  font-size: 18px;
+  background-color: #4d724d;
 }
 

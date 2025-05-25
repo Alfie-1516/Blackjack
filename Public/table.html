@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="css/common.css" />
+    <script src="js/poker.js" defer></script>
+    <title>Gaming Table</title>
+  </head>
+
+  <body
+    class="bg-[#f5f5f5] h-screen justify-center items-center overflow-x-hidden"
+  >
+    <header></header>
+    <nav>
+      <h1>Poker</h1>
+
+      <ul>
+        <li><a href="index.html" class="nav_item">Home</a></li>
+        <li><a href="rules.html" class="nav_item">Rules</a></li>
+        <li class="start_play">
+          <a href="table.html" class="nav_item">Start Playing</a>
+        </li>
+      </ul>
+      <h1>Poker</h1>
+    </nav>
+    <main class="table_container flex w-screen justify-center items-ceneter">
+      <div
+        class="w-1/4 h-full flex flex-col justify-between gap-1 border border-[#8db48e]"
+      >
+        <div class="flex flex-row justify-between">
+          <div class="w-52">
+            <p class="player_name">Player 2</p>
+            <span class="flex flex-row w-full">
+              <p class="player_info">Chip Bank:</p>
+              <p class="player_info_value" id="p2_chips"></p>
+            </span>
+            <span class="flex flex-row w-full">
+              <p class="player_info">Round Bet:</p>
+              <p class="player_info_value" id="p2_round_bet"></p>
+            </span>
+          </div>
+          <div class="player_2 flex w-72 justify-evenly">
+            <img
+              class="card"
+              src="Images/Playing_Cards/SVG-cards-1.3/2_of_clubs.svg"
+              alt=""
+              id="p2_card_1"
+            />
+            <img
+              class="card"
+              src="Images/Playing_Cards/SVG-cards-1.3/2_of_clubs.svg"
+              alt=""
+              id="p2_card_2"
+            />
+          </div>
+        </div>
+
+        <div class="flex flex-row justify-between">
+          <div class="w-52">
+            <p class="player_name">Player 3</p>
+            <span class="flex flex-row w-full">
+              <p class="player_info">Chip Bank:</p>
+              <p class="player_info_value" id="p3_chips"></p>
+            </span>
+            <span class="flex flex-row w-full">
+              <p class="player_info">Round Bet:</p>
+              <p class="player_info_value" id="p3_round_bet"></p>
+            </span>
+          </div>
+          <div class="player_2 flex w-72 justify-evenly">
+            <img
+              class="card"
+              src="Images/Playing_Cards/SVG-cards-1.3/2_of_clubs.svg"
+              alt=""
+              id="p3_card_1"
+            />
+            <img
+              class="card"
+              src="Images/Playing_Cards/SVG-cards-1.3/2_of_clubs.svg"
+              alt=""
+              id="p3_card_2"
+            />
+          </div>
+        </div>
+
+        <div class="flex flex-row justify-between">
+          <div class="w-52">
+            <p class="player_name">Player 4</p>
+            <span class="flex flex-row w-full">
+              <p class="player_info">Chip Bank:</p>
+              <p class="player_info_value" id="p4_chips"></p>
+            </span>
+            <span class="flex flex-row w-full">
+              <p class="player_info">Round Bet:</p>
+              <p class="player_info_value" id="p4_round_bet"></p>
+            </span>
+          </div>
+          <div class="player_2 flex w-72 justify-evenly">
+            <img
+              class="card"
+              src="Images/Playing_Cards/SVG-cards-1.3/2_of_clubs.svg"
+              alt=""
+              id="p4_card_1"
+            />
+            <img
+              class="card"
+              src="Images/Playing_Cards/SVG-cards-1.3/2_of_clubs.svg"
+              alt=""
+              id="p4_card_2"
+            />
+          </div>
+        </div>
+
+        <div class="flex flex-row justify-between">
+          <div class="w-52">
+            <p class="player_name">Player 5</p>
+            <span class="flex flex-row w-full">
+              <p class="player_info">Chip Bank:</p>
+              <p class="player_info_value" id="p5_chips"></p>
+            </span>
+            <span class="flex flex-row w-full">
+              <p class="player_info">Round Bet:</p>
+              <p class="player_info_value" id="p5_round_bet"></p>
+            </span>
+          </div>
+          <div class="player_2 flex w-72 justify-evenly">
+            <img
+              class="card"
+              src="Images/Playing_Cards/SVG-cards-1.3/2_of_clubs.svg"
+              alt=""
+              id="p5_card_1"
+            />
+            <img
+              class="card"
+              src="Images/Playing_Cards/SVG-cards-1.3/2_of_clubs.svg"
+              alt=""
+              id="p5_card_2"
+            />
+          </div>
+        </div>
+
+        <div class="flex flex-row justify-between">
+          <div class="w-52">
+            <p class="player_name">Player 6</p>
+            <span class="flex flex-row w-full">
+              <p class="player_info">Chip Bank:</p>
+              <p class="player_info_value" id="p6_chips"></p>
+            </span>
+            <span class="flex flex-row w-full">
+              <p class="player_info">Round Bet:</p>
+              <p class="player_info_value" id="p6_round_bet"></p>
+            </span>
+          </div>
+          <div class="player_2 flex w-72 justify-evenly">
+            <img
+              class="card"
+              src="Images/Playing_Cards/SVG-cards-1.3/2_of_clubs.svg"
+              alt=""
+              id="p6_card_1"
+            />
+            <img
+              class="card"
+              src="Images/Playing_Cards/SVG-cards-1.3/2_of_clubs.svg"
+              alt=""
+              id="p6_card_2"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="w-9/12 h-full flex flex-col">
+        <div
+          class="w-full h-[65%] flex flex-col border-r border-t border-[#8db48e] bg-[url('Images/poker_table.webp')] justify-center items-center bg-cover bg-center bg-no-repeat"
+        >
+          <div
+            class="h-52 bg-amber-600 flex justify-center items-center flex-col"
+          >
+            <p class="text-2xl" id="pot">pot Value</p>
+            <img
+              src="Images\small.jpg"
+              alt=""
+              class="h-40 w-40"
+              id="potImage"
+            />
+          </div>
+          <div class="flex justify-evenly items-center w-3/6">
+            <img
+              class="card w-2/12"
+              id="flop_1"
+              src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg"
+              alt=""
+            />
+            <img
+              class="card w-2/12"
+              id="flop_2"
+              src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg"
+              alt=""
+            />
+            <img
+              class="card w-2/12"
+              id="flop_3"
+              src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg"
+              alt=""
+            />
+            <img
+              class="card w-2/12"
+              id="turn"
+              src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg"
+              alt=""
+            />
+            <img
+              class="card w-2/12"
+              id="river"
+              src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg"
+              alt=""
+            />
+          </div>
+        </div>
+        <div
+          class="w-full h-[35%] border-[#8db48e] border-r border-b border-t gap-10 flex justify-evenly items-start"
+        >
+          <div class="w-60 gap-4">
+            <p class="player_name">Player 1</p>
+            <span class="flex flex-row w-full">
+              <p class="player_info">Chip Bank:</p>
+              <p class="player_info_value" id="p1_chips"></p>
+            </span>
+            <span class="flex flex-row w-full">
+              <p class="player_info">Round Bet:</p>
+              <p class="player_info_value" id="p1_round_bet"></p>
+            </span>
+            <span class="flex flex-row w-full">
+              <p class="player_info">Current Best Hand:</p>
+              <p class="player_info_value" id="p1_hand"></p>
+            </span>
+            <span class="flex flex-row w-full">
+              <p class="player_info">Current Hand Rank:</p>
+              <p class="player_info_value" id="p1_rank"></p>
+            </span>
+          </div>
+          <div class="flex gap-6">
+            <img
+              id="p1_card_1"
+              src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg"
+              alt=""
+            />
+            <img
+              id="p1_card_2"
+              src="Images\Playing_Cards\SVG-cards-1.3\2_of_clubs.svg"
+              alt=""
+            />
+          </div>
+          <div
+            class="h-full rounded-xl flex flex-col justify-between"
+            id="bet_modal"
+          >
+            <h1 class="text-xl font-bold text-gray-800 mb-2">Previous Plays</h1>
+            <p id="plays" class="text-base text-gray-700 mb-4">
+              Player On Raises
+            </p>
+            <h1 class="text-lg font-semibold text-gray-800 mb-1">Place Bet</h1>
+            <p class="text-sm text-gray-600 mb-3">
+              How much will you like to bet
+            </p>
+            <div class="flex gap-2 mb-3">
+              <input
+                type="number"
+                id="raise_amount"
+                placeholder="Amount"
+                class="border-2 border-gray-300 rounded-md p-2 w-24 focus:outline-none focus:ring-2 focus:ring-amber-600"
+              />
+              <button class="action-button" id="raise">Raise</button>
+              <button class="action-button" id="call">Call</button>
+              <button class="action-button" id="check">Check</button>
+            </div>
+            <div class="flex gap-2 mt-28">
+              <button class="action-button" id="fold">Fold</button>
+              <button class="action-button" id="all_in">All In</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer></footer>
+    <aside
+      class="winner_model bg-white p-8 rounded-lg shadow-lg flex flex-col items-center gap-10 border"
+      id="winner_model"
+      style="width: 30rem"
+    >
+      <h2 class="text-2xl font-bold mb-4 text-green-700">Round Over</h2>
+      <p class="text-lg mb-2 font-semibold" id="winner_name">
+        Winner: Player 1
+      </p>
+      <p class="text-lg mb-6" id="winner_earnings">Earnings: $1500</p>
+      <div class="flex gap-4">
+        <button class="start_play" onclick="nextRound()">Next Round</button>
+        <button class="start_play" onclick="start_game()">
+          Start New Game
+        </button>
+      </div>
+    </aside>
+  </body>
+</html>
