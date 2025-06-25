@@ -1,0 +1,107 @@
+[
+  {
+    "number": 1,
+    "green_title": "Objective",
+    "title": " of the Game",
+    "description": "The primary objective of poker is to accumulate chips or money by outplaying your opponents through strategy and skill. This can be achieved by having the best hand at showdown or by getting your opponents to fold before the showdown.",
+    "main_points": [
+      {
+        "point_title": "",
+        "point": "Win chips or money. Either hold the strongest hand or make opponents fold. Success involves strategy, psychology, and risk management. Victory can occur at showdown or through bluffing. Poker is a mix of skill, probability, and decision-making."
+      }
+    ]
+  },
+  {
+    "number": 2,
+    "green_title": "Hand Rankings",
+    "title": "Basic Poker ",
+    "description": "Poker hands are ranked from strongest to weakest. These rankings determine the winner at showdown if multiple players remain in the hand.",
+    "main_points": [
+      {
+        "point_title": "Royal Flush: ",
+        "point": "A, K, Q, J, 10 all of the same suit."
+      },
+      {
+        "point_title": "Straight Flush: ",
+        "point": "Five cards in sequence and same suit."
+      },
+      {
+        "point_title": "Four of a Kind: ",
+        "point": "Four cards of the same rank."
+      },
+      {
+        "point_title": "Full House: ",
+        "point": "Three of a kind plus a pair."
+      },
+      {
+        "point_title": "Flush: ",
+        "point": "Five cards of the same suit, any order."
+      },
+      {
+        "point_title": "Straight: ",
+        "point": "Five cards in sequence, different suits."
+      },
+      {
+        "point_title": "Three of a Kind: ",
+        "point": "Three cards of the same rank."
+      },
+      { "point_title": "Two Pair: ", "point": "Two separate pairs." },
+      { "point_title": "One Pair: ", "point": "Two cards of the same rank." },
+      {
+        "point_title": "High Card: ",
+        "point": "If no combination, highest card wins."
+      }
+    ]
+  },
+  {
+    "number": 3,
+    "green_title": "Gameplay Overview",
+    "title": " ",
+    "description": "Poker is played in structured rounds that involve dealing cards, placing bets, and competing to win the pot either by having the best hand or making others fold.",
+    "main_points": [
+      {
+        "point_title": "",
+        "point": "Players receive two private 'hole cards'. Five community cards are dealt in stages: Flop (3), Turn (1), River (1). Players make the best five-card hand using any combination of hole and community cards. Betting rounds follow each stage of community cards. Goal is to win the pot through best hand or opponent folds."
+      }
+    ]
+  },
+  {
+    "number": 4,
+    "green_title": "Poker Terms",
+    "title": "Common ",
+    "description": "Familiarity with poker terms is essential for understanding and playing the game effectively.",
+    "main_points": [
+      {
+        "point_title": "Check: ",
+        "point": "Decline to bet while staying in the hand."
+      },
+      { "point_title": "Bet: ", "point": "Place chips or money into the pot." },
+      { "point_title": "Call: ", "point": "Match the current highest bet." },
+      {
+        "point_title": "Raise: ",
+        "point": "Increase the size of the current bet."
+      },
+      {
+        "point_title": "Fold: ",
+        "point": "Surrender your hand and forfeit the pot."
+      },
+      {
+        "point_title": "Blinds: ",
+        "point": "Forced bets to initiate action (small and big blind)."
+      },
+      { "point_title": "All-In: ", "point": "Bet all of your remaining chips." }
+    ]
+  },
+  {
+    "number": 5,
+    "green_title": "Poker Etiquette",
+    "title": "Basic ",
+    "description": "Good etiquette helps maintain a fair and enjoyable poker environment for all players.",
+    "main_points": [
+      {
+        "point_title": "",
+        "point": "Always act only when it’s your turn. Never reveal your cards during an active hand. Treat all players with respect. Handle chips clearly and neatly. Announce your actions when needed (e.g., 'raise', 'all-in')."
+      }
+    ]
+  }
+]

@@ -1,6 +1,3 @@
-# Node modules
-node_modules/
-
 # Logs
 logs
 *.log
@@ -8,22 +5,20 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+lerna-debug.log*
 
-# dotenv environment variables
-.env
-.env.*
+node_modules
+dist
+dist-ssr
+*.local
 
-# Operating system files
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
 .DS_Store
-Thumbs.db
-
-# Editor settings (optional but useful)
-.vscode/
-.idea/
-
-# Build output (if any)
-dist/
-build/
-
-# Optional: coverage for testing
-coverage/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
