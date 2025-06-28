@@ -18,6 +18,11 @@ export const nextRound = (req, res) => {
   gameState.showTurn = false;
   gameState.gameOver = false;
   gameState.winner = null;
+  gameState.players.forEach((player) => {
+    if (player.chips > 0) {
+      player.fold = false;
+    }
+  });
   const currentPlayer = gameState.players.find((player) => player.id === 1);
   currentPlayer.chips -= 10;
   currentPlayer.bet += 10;

@@ -4,6 +4,7 @@ import MainTable from "./PagesSubSections/TablePage/MainTable";
 import AllPlayersUI from "./PagesSubSections/TablePage/allPlayersUI";
 import GameController from "./PagesSubSections/TablePage/GameController";
 import GameButtons from "../components/GameButtons";
+import MainButton from "../components/StartButton";
 
 export function Table() {
   const [players, setTempPlayers] = useState([
@@ -94,7 +95,7 @@ export function Table() {
     return (
       <div className="p-4  h-[90vh] w-screen ">
         <main className=" h-full w-full flex ">
-          <AllPlayersUI players={otherPlayers} />
+          <AllPlayersUI players={otherPlayers} gameState={gameState} />
           <div className="w-3/4 h-full ">
             <MainTable gameState={gameState} />
             <div className="flex h-[35%] border-2 border-t-0 border-l-0 rounded-br-lg p-4 border-[#8db48e]">
@@ -107,16 +108,39 @@ export function Table() {
           </div>
         </main>
         {gameState.gameOver && (
-          <div className="bg-red-300 h-[500px] w-[500px] absolute m-auto inset-0">
-            <p>{gameState.winner}</p>
-            <GameButtons
-              buttonName={"Start Game"}
-              setTempPlayers={setTempPlayers}
-            />
-            <GameButtons
-              buttonName={"Next Round"}
-              setTempPlayers={setTempPlayers}
-            />
+          <div className="bg-white h-[400px] w-[300px] absolute m-auto inset-0 flex flex-col items-center justify-center rounded-lg shadow-lg z-50 border border-black">
+            {gameState.winner && (
+              <div className="text-center p-4">
+                <h2 className="text-xl font-bold text-green-700 mb-2">
+                  🏆 {gameState.winner.winner.name} Wins!
+                </h2>
+                <p className="text-black">
+                  Best Hand:{" "}
+                  <span className="font-semibold text-green-600">
+                    {gameState.winner.winner.bestHand}
+                  </span>
+                </p>
+                <p className="text-black mt-1">
+                  Total Winnings:{" "}
+                  <span className="font-semibold text-green-600">
+                    ${gameState.pot}
+                  </span>
+                </p>
+              </div>
+            )}
+
+            <div className="flex gap-4 mt-6">
+              <MainButton
+                className="w-30 bg-black text-white hover:bg-green-700 transition"
+                buttonName="Start Game"
+                setTempPlayers={setTempPlayers}
+              />
+              <MainButton
+                className="w-30 bg-green-600 text-white hover:bg-black transition"
+                buttonName="Next Round"
+                setTempPlayers={setTempPlayers}
+              />
+            </div>
           </div>
         )}
       </div>

@@ -3,7 +3,10 @@ import React, { Component } from "react";
 export class Card extends Component {
   render() {
     const { cardImage } = this.props;
-    const imageUrl = `/SVG-cards-1.3/${cardImage}`;
+    const imageUrl =
+      cardImage === "back"
+        ? "/Back_of_card.jpg"
+        : `/SVG-cards-1.3/${cardImage}`;
     return (
       <div className="w-5/12 h-full ">
         {imageUrl ? (

@@ -14,7 +14,7 @@ export function createPlayers(deck) {
       out: false,
       allPlays: ["call"],
       bestHand: "Unknown",
-      rank: 10,
+      rank: "Unknown",
     },
     {
       id: 2,

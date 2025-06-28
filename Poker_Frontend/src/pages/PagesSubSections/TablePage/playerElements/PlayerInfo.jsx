@@ -1,23 +1,29 @@
 import React, { Component } from "react";
+import { Space, Typography } from "antd";
 
 export class PlayerInfo extends Component {
   render() {
     const { mainPlayer } = this.props;
+    const { Text } = Typography;
+
     return (
-      <div className=" w-1/5 h-full flex flex-col justify-center ">
-        <p className="text-xl font-semibold">{mainPlayer.name}</p>
-        <p>
-          Chip Bank:{" "}
-          <span className="text-[#4d724d]">${mainPlayer.chips}</span>
-        </p>
-        <p>
-          Round Bet:{" "}
-          <span className="text-[#ca6161]">-${mainPlayer.bet}</span>
-        </p>
-        <p>Status:{mainPlayer.playerStatus}</p>
-        <p>Current Best Hand:</p>
-        <p>Current Hand Rank:</p>
-      </div>
+      <Space className="min-w-48" direction="vertical">
+        <Text className="text-xl font-semibold">{mainPlayer.name}</Text>
+        <Text>
+          Chip Bank: <span className="text-[#4d724d]">${mainPlayer.chips}</span>
+        </Text>
+        <Text>
+          Round Bet: <span className="text-[#ca6161]">-${mainPlayer.bet}</span>
+        </Text>
+        <Text>
+          Status:
+          <span className="text-[#4d724d]">
+            {mainPlayer.fold ? " Folded" : " Active"}
+          </span>
+        </Text>
+        <Text>Current Best Hand: {mainPlayer.bestHand}</Text>
+        <Text>Current Hand Rank: {mainPlayer.rank}</Text>
+      </Space>
     );
   }
 }

@@ -1,7 +1,7 @@
 export function roundVerifier(state) {
   // Filter out players who have folded or are out of the game
   const activePlayers = state.players.filter(
-    (player) => !player.fold && !player.out
+    (player) => !player.fold && !player.out && !player.allIn
   );
 
   // If no active players or only one active player, round should end

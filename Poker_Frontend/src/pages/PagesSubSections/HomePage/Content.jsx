@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import StartButton from "../../../components/StartButton";
+import MainButton from "../../../components/StartButton";
 import Stats from "./Stats";
 
 export class Content extends Component {
@@ -24,7 +24,9 @@ export class Content extends Component {
           </p>
         </div>
         {/* Start button section */}
-        <StartButton />
+        <a href="/Table">
+          <MainButton buttonName="Start Playing" />
+        </a>
         {/* Stats display section */}
         <span className="flex w-full gap-7">
           {allStat.map((stat) => (
