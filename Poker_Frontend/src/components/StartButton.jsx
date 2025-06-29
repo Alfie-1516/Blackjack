@@ -9,8 +9,6 @@ import {
 
 export default function MainButton({ buttonName, setTempPlayers, gameState }) {
   async function handleButtonPress(clickedButton) {
-    console.log(clickedButton);
-
     // Fix: Use proper OR condition
     if (clickedButton === "New Game") {
       await setTempPlayers(startNewGame);
@@ -27,7 +25,6 @@ export default function MainButton({ buttonName, setTempPlayers, gameState }) {
     }
 
     if (clickedButton === "Next Player") {
-      console.log("In Next Player");
       const player =
         gameState && gameState.players
           ? gameState.players[gameState.playerTurn - 1]
@@ -45,7 +42,6 @@ export default function MainButton({ buttonName, setTempPlayers, gameState }) {
         parseInt(gameState.highestRoundBet, 10)
       );
 
-      console.log(player.name, action);
       handlePlayerAction(action.action, action.amount);
 
       return;

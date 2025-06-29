@@ -44,6 +44,5 @@ export async function handlePlayerAction(action, amount) {
     body: JSON.stringify(body),
   });
 
-  console.log("Action result:", data);
   return data;
 }

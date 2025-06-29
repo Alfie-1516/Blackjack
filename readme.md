@@ -109,10 +109,19 @@ The frontend will run on `http://localhost:5173` by default.
 
 ### 4️⃣ Environment Variables
 
-Create a `.env` file in `/frontend`:
+Create a `.env` file in `/Poker_Frontend`:
 
 ```env
 VITE_API_BASE_URL=http://localhost:5001/api
+```
+
+---
+
+Create a `.env` file in `/Poker_Backend`:
+
+```env
+MONGO_URI=mongodb://localhost:27017/pokerGameDB
+PORT=5001
 ```
 
 ---

@@ -166,8 +166,6 @@ export function getWinner(newPlayers, newCommunity) {
 
   const winner = playerResults[0];
 
-  // console.log("Community Cards:", newCommunity);
-  // console.log("Player Results:");
   playerResults.forEach((result, index) => {
     console.log(
       `${index + 1}. ${result.player.name}: ${
@@ -175,8 +173,6 @@ export function getWinner(newPlayers, newCommunity) {
       } (Hand: ${result.player.hand.join(", ")})`
     );
   });
-
-  // console.log(`\nWinner: ${winner.player.name} with ${winner.bestHand.name}`);
 
   return {
     winner: winner.player,

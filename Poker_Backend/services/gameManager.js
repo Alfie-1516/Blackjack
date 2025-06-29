@@ -12,7 +12,6 @@ export function gameManager(gameState, action, amount) {
     switch (action) {
       case "Raise":
         const newRaisedAmount = currentRoundBet + amount;
-        console.log(currentPlayer);
         currentPlayer.chips -= newRaisedAmount;
         currentPlayer.bet += newRaisedAmount;
         gameState.pot += newRaisedAmount;
@@ -40,7 +39,6 @@ export function gameManager(gameState, action, amount) {
     }
   } else {
     currentPlayer.allPlays.push("call");
-    console.log(currentPlayer.name, "has floded");
   }
 
   let roundOver = roundVerifier(gameState);

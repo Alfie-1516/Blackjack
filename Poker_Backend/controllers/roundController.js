@@ -1,6 +1,7 @@
 import GameState from "../models/GameState.js";
 import { generateDeck } from "../services/deckGenerator.js";
 import { dealToPlayers } from "../utils/dealToPlayers.js";
+import { resetPlayersForNextRound } from "../utils/resetPlayersForNextRound.js";
 
 export const nextRound = async (req, res) => {
   try {
@@ -25,15 +26,11 @@ export const nextRound = async (req, res) => {
     gameState.showRiver = false;
     gameState.gameOver = false;
     gameState.winner = null;
-
-    gameState.players.forEach((player) => {
-      if (player.chips > 0) {
-        player.fold = false;
-        player.bet = 0; // Reset player bet for new round
-      }
-    });
+    gameState.players = resetPlayersForNextRound(gameState.players);
 
     const currentPlayer = gameState.players.find((player) => player.id === 1);
+    currentPlayer.bestHand = "Unknown";
+    currentPlayer.rank = "Unknown";
     currentPlayer.chips -= 10;
     currentPlayer.bet += 10;
 
