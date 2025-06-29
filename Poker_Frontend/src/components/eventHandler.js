@@ -1,4 +1,5 @@
 import { fetchPlayers } from "./fetchers.js";
+import { getAllPlayers } from "../utils/api.js";
 
 export async function handleButtonPress(clickedButton) {
   switch (clickedButton) {
@@ -19,7 +20,7 @@ export async function handleButtonPress(clickedButton) {
       return "Player All In";
     case "Start Game":
       console.log("Player has started the game");
-      const players = await fetchPlayers();
+      const players = await getAllPlayers;
       return players;
     default:
       console.log("Unknown");

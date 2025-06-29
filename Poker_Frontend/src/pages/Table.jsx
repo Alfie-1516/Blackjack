@@ -3,8 +3,8 @@ import MainPlayerUI from "./PagesSubSections/TablePage/mainPlayerUI";
 import MainTable from "./PagesSubSections/TablePage/MainTable";
 import AllPlayersUI from "./PagesSubSections/TablePage/allPlayersUI";
 import GameController from "./PagesSubSections/TablePage/GameController";
-import GameButtons from "../components/GameButtons";
 import MainButton from "../components/StartButton";
+import { continueGame } from "../utils/api";
 
 export function Table() {
   const [players, setTempPlayers] = useState([

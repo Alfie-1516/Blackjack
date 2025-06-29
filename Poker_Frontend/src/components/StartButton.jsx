@@ -1,5 +1,11 @@
 import React from "react";
 import getAIAction from "../components/AIplayer"; // Add missing import
+import {
+  startNextRound,
+  getAllPlayers,
+  startNewGame,
+  handlePlayerAction,
+} from "../utils/api";
 
 export default function MainButton({ buttonName, setTempPlayers, gameState }) {
   async function handleButtonPress(clickedButton) {
@@ -7,46 +13,16 @@ export default function MainButton({ buttonName, setTempPlayers, gameState }) {
 
     // Fix: Use proper OR condition
     if (clickedButton === "New Game") {
-      console.log("Player has started the game");
-
-      try {
-        const response = await fetch(
-          "http://localhost:5001/api/game/startGame"
-        );
-        const data = await response.json();
-        setTempPlayers(data.allPlayers);
-      } catch (error) {
-        console.error("Failed to fetch players:", error);
-      }
+      await setTempPlayers(startNewGame);
       return;
     }
     if (clickedButton === "Start Playing") {
-      console.log("Player has started the game");
-
-      try {
-        const response = await fetch(
-          "http://localhost:5001/api/game/gameState"
-        );
-        const data = await response.json();
-        setTempPlayers(data.allPlayers);
-      } catch (error) {
-        console.error("Failed to fetch players:", error);
-      }
+      await setTempPlayers(getAllPlayers);
       return;
     }
 
     if (clickedButton === "Next Round") {
-      console.log("Starting next round");
-
-      try {
-        const response = await fetch(
-          "http://localhost:5001/api/game/nextRound"
-        );
-        const data = await response.json();
-        setTempPlayers(data.allPlayers);
-      } catch (error) {
-        console.error("Failed to fetch players:", error);
-      }
+      await setTempPlayers(startNextRound);
       return;
     }
 
@@ -70,21 +46,8 @@ export default function MainButton({ buttonName, setTempPlayers, gameState }) {
       );
 
       console.log(player.name, action);
-      try {
-        const res = await fetch("http://localhost:5001/api/game/playerAction", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            action: action.action,
-            // Include amount if it exists (though AI won't raise, it might be needed)
-            ...(action.amount && { amount: action.amount }),
-          }),
-        });
-        const result = await res.json();
-        console.log("Action result:", result);
-      } catch (error) {
-        console.error("Failed to send action:", error);
-      }
+      handlePlayerAction(action.action, action.amount);
+
       return;
     }
   }
