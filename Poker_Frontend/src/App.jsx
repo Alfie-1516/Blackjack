@@ -9,7 +9,7 @@ import CustomFooter from "./components/CustomFooter";
 
 function App() {
   const path = window.location.pathname;
-  const [showHowToPlay, setShowHowToPlay] = useState(true);
+  const [showHowToPlay, setShowHowToPlay] = useState(false);
 
   return (
     <>

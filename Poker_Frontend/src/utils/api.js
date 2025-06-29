@@ -1,57 +1,49 @@
-const API_BASE = "/api";
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
-export async function startNextRound() {
+async function handleFetch(url, options) {
   try {
-    const response = await fetch("http://localhost:5001/api/game/nextRound");
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Failed to fetch players:", error);
+    console.error(`Fetch error at ${url}:`, error);
+    throw error; // rethrow for caller to handle if needed
   }
+}
+
+export async function startNextRound() {
+  return handleFetch(`${API_BASE}/game/nextRound`);
 }
 
 export async function continueGame() {
-  try {
-    const response = await fetch("http://localhost:5001/api/game/gameState");
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Failed to fetch players:", error);
-  }
+  return handleFetch(`${API_BASE}/game/gameState`);
 }
+
 export async function getAllPlayers() {
-  try {
-    const response = await fetch("http://localhost:5001/api/game/gameState");
-    const data = await response.json();
-    return data.allPlayers;
-  } catch (error) {
-    console.error("Failed to fetch players:", error);
-  }
+  const data = await handleFetch(`${API_BASE}/game/gameState`);
+  return data.allPlayers;
 }
 
 export async function startNewGame() {
-  try {
-    const response = await fetch("http://localhost:5001/api/game/startGame");
-    const data = await response.json();
-    return data.allPlayers;
-  } catch (error) {
-    console.error("Failed to fetch players:", error);
-  }
+  const data = await handleFetch(`${API_BASE}/game/startGame`);
+  return data.allPlayers;
 }
+
 export async function handlePlayerAction(action, amount) {
-  try {
-    const res = await fetch("http://localhost:5001/api/game/playerAction", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        action: action,
-        // Include amount if it exists (though AI won't raise, it might be needed)
-        ...(amount && { amount: amount }),
-      }),
-    });
-    const result = await res.json();
-    console.log("Action result:", result);
-  } catch (error) {
-    console.error("Failed to send action:", error);
-  }
+  const body = {
+    action,
+    ...(amount !== undefined && { amount }),
+  };
+
+  const data = await handleFetch(`${API_BASE}/game/playerAction`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+
+  console.log("Action result:", data);
+  return data;
 }
