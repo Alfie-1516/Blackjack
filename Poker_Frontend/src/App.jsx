@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <Navbar setShowHowToPlay={setShowHowToPlay} />
-      {path === "/Home" && <Home />}
+      {(path === "/Home" || path === "/") && <Home />}
       {path === "/Rules" && <Rules />}
       {path === "/Table" && <Table />}
       <HelpWindow
