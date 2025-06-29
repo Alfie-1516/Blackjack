@@ -81,7 +81,7 @@ README.md
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/poker-game.git
+git clone https://github.com/Alfie-1516/Blackjack.git
 cd poker-game
 ```
 
