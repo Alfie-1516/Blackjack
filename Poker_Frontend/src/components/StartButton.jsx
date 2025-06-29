@@ -6,7 +6,7 @@ export default function MainButton({ buttonName, setTempPlayers, gameState }) {
     console.log(clickedButton);
 
     // Fix: Use proper OR condition
-    if (clickedButton === "Start Game" || clickedButton === "Start Playing") {
+    if (clickedButton === "New Game") {
       console.log("Player has started the game");
 
       try {
@@ -14,7 +14,20 @@ export default function MainButton({ buttonName, setTempPlayers, gameState }) {
           "http://localhost:5001/api/game/startGame"
         );
         const data = await response.json();
-        console.log(data.allPlayers);
+        setTempPlayers(data.allPlayers);
+      } catch (error) {
+        console.error("Failed to fetch players:", error);
+      }
+      return;
+    }
+    if (clickedButton === "Start Playing") {
+      console.log("Player has started the game");
+
+      try {
+        const response = await fetch(
+          "http://localhost:5001/api/game/gameState"
+        );
+        const data = await response.json();
         setTempPlayers(data.allPlayers);
       } catch (error) {
         console.error("Failed to fetch players:", error);
@@ -30,7 +43,6 @@ export default function MainButton({ buttonName, setTempPlayers, gameState }) {
           "http://localhost:5001/api/game/nextRound"
         );
         const data = await response.json();
-        console.log(data.allPlayers);
         setTempPlayers(data.allPlayers);
       } catch (error) {
         console.error("Failed to fetch players:", error);

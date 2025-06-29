@@ -82,7 +82,7 @@ export function Table() {
     async function fetchState() {
       const response = await fetch("http://localhost:5001/api/game/gameState");
       const data = await response.json();
-      setGameState(data.state.state);
+      setGameState(data.state);
       setLoading(false);
     }
     fetchState();
@@ -132,7 +132,7 @@ export function Table() {
             <div className="flex gap-4 mt-6">
               <MainButton
                 className="w-30 bg-black text-white hover:bg-green-700 transition"
-                buttonName="Start Game"
+                buttonName="New Game"
                 setTempPlayers={setTempPlayers}
               />
               <MainButton
